@@ -51,8 +51,8 @@ For Youtube and tenor.cards, same is done using hyphen:
 
 - **Links** are only available using the `[title](link_url)` syntax and **images** are only available using the `![title](image_url)` syntax:
 ```
-[link_title](https://github.com/Chalarangelo/parse-md-js)
-![image_tite](https://github.com/Chalarangelo/parse-md-js/image.png)
+[link_title](https://github.com/OhYash/parsemsg-js)
+![image_tite](https://github.com/OhYash/parsemsg-js/image.png)
 ```
 
 - **Line breaks** are supported using two or more space or newline characters.
