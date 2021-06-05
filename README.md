@@ -1,38 +1,53 @@
-# Parse-MD.js
+# parsemsg.js
 
-A regular expression Markdown parser, written in functional Javascript.
+A regular expression formatted message parser, written in functional Javascript.
 
 ## Usage
 
-Include the javascript file in your page, then simply call `parseMarkdown`:
+Include the javascript file in your page, then simply call `parse<appname>Message`:
+```javascript
+    var parsedWA = parseWhatsappMessage(yourText);
+    var parsedYT = parseYoutubeMessage(yourText);
+    var parsedSlack = parseSlackMessage(yourText);
+    var parsedTC = parseTenorCardsMessage(yourText);
+```
 
-	var parsedMD = parseMarkdown(yourMarkdownVar);
-
-The parser will parse the contents of `yourMarkdownVar` into `parsedMD` as HTML.
+The parser will parse the contents of `yourText` as HTML.  
 
 ## Recognized Syntax
 
-- **Headers** are only available using the `#` syntax:
+### Whatsapp, Youtube, Slack, Tenor.cards
+
+- **bold** is marked with asterisks:
+```
+*bold*
+```
+
+- _italics_ is marked with underscores:
+```
+_italics_
+```
+
+- For Whatsapp and slack, ~Strikethrough~ is done using tilde characters:
+```
+~strikethrough~
+```
+For Youtube and tenor.cards, same is done using hyphen:
+```
+-strikethrough-
+```
+
+- For Whatsapp, monospaced text is added through ` ``` ` symbol.
+- Slack, and tenor.cards support inline text using the ``` ` ``` symbol.
+
+### Tenor.cards exclusive
+
+- **Headers** are available using the `#` syntax:
 ```
 # Heading 1
 ## Heading 2
 ### Heading 3
 ```
-
-- **Italics** and **bold** are available using asterisks:
-```
-*Italics* and **bold**
-```
-
-- **Unordered lists** are available using either `-` or `+` and **ordered lists** are available using `1.`, `2.` etc:
-```
- - Unordered list item 1
- + Unordered list item 2
-
- 1. Ordered list item 1
- 2. Ordered list item 2
-```
-**Note** that list nesting is not supported and might cause unexpected behavior.
 
 - **Links** are only available using the `[title](link_url)` syntax and **images** are only available using the `![title](image_url)` syntax:
 ```
@@ -40,27 +55,7 @@ The parser will parse the contents of `yourMarkdownVar` into `parsedMD` as HTML.
 ![image_tite](https://github.com/Chalarangelo/parse-md-js/image.png)
 ```
 
-- **Inline code** can be written using the `` ` `` symbol and **code blocks** are only available using single tab indentation:
-```
-`code goes here`
-
-	code block
-```
-
-- **Single line blockquotes** are available using the `>` symbol:
-```
-> blockquote
-```
-
-- **Horizontal rules** are available using either `---` or `===`:
-```
- ---
- ===
-```
-
-- **Line breaks** are only supported using two or more newline characters.
-
-- **Tables**, **inline HTML** and **Youtube vide embedding** are not supported.
+- **Line breaks** are supported using two or more space or newline characters.
 
 ## License
 
