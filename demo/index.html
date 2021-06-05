@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="https://cdn.rawgit.com/Chalarangelo/mini.css/v2.1.0/dist/mini-default.min.css"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+	<title>parsemsg.js demo</title>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta name="description" content="A regular expression formatted app message parser, written in functional Javascript."/>
+	<meta name="author" content="Yash Yadav (ohyash)"/>
+	<meta property="og:title" content="Parse-MD.js"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:description" content="A regular expression Markdown parser, written in functional Javascript."/>
+</head>
+
+<body>
+	<div class="row">
+		<div class="col-sm col-lg-10 col-lg-offset-1">
+			<br />
+			<h1 style="text-align: center; font-size: 3.5em;">parsemsg.js<small style="font-size: 33%;">Regex-based formatted app message parser in functional JS</small></h1>
+			<br/>
+			<p style="text-align: center;"><a href="https://github.com/OhYash/parse-md-js" class="button primary large"><i class="fa fa-github fa-2x"></i><span style="font-size: 150%;">&nbsp;Github</span></a></p>
+			<br />
+			<div class="card fluid">
+				<div class="section double-padded"><h2>Introduction &amp; Usage</h2></div>
+				<div class="section double-padded"><p><strong>Parse-MD.js</strong> is a really simple tool that converts app formatted message to HTML. It's built using regular expressions in combination with functional Javascript. It's really tiny (about 150 lines of code) and supports common popular platforms (<a href="https//www.whatsapp.com">Whatsapp</a>, <a href="https://youtube.com">Youtube</a>, <a href="https://slack.com">Slack</a>, <a href="https://tenor.cards/">Tenor.cards</a>), plus, it can be easily extended by adding more regular expressions. Most common apps message format syntax features are supported. To check the recognized syntax rules, have a look at the <a href="https://github.com/OhYash/parse-md-js/blob/master/README.md">README</a>.</p></div>
+				<div class="section double-padded"><p>To use the parser, just grab the javascript code from <a href="https://github.com/OhYash/parse-md-js/blob/master/parsemsg.js">here</a> and simply call one of the following functions:</p><pre>var parsedWA = parseWhatsappMessage(yourText);</pre><pre>var parsedYT = parseYoutubeMessage(yourText);</pre><pre>var parsedSlack = parseSlackMessage(yourText);</pre><pre>var parsedTC = parseTenorCardsMessage(yourText);</pre><p>for the parser to parse the contents of <code>yourText</code> as HTML.</p></div>
+			</div>
+		</div>
+		<div class="col-sm col-lg-10 col-lg-offset-1">
+			<div class="card fluid">
+				<div class="section double-padded"><h2>Convert some Text!</h2></div>
+				<div class="section double-padded"><p>Actions speak louder than words, right? Well, let's see it at work then! Enter some valid message text in the input field below, then press the buttons below it to convert it to HTML instantly!</p></div>
+				
+				<textarea id="InputTa" style="height: 150px;" class="section media double-padded" autocomplete="off"># Sample heading
+
+This is a sample paragraph with some `inline code`  
+Maybe you would like to see some *bold text* or some _italics_, huh?  
+Also, depending on app, ~this~ could be strikethrough, or maybe -this- is.</textarea>
+				<button class="section primary large" onClick="document.getElementById('OutputCollapseWrapper').className='tabs stacked'; document.getElementById('OutputDiv').innerHTML = parseWhatsappMessage(document.getElementById('InputTa').value);">Convert Whatsapp message</button>
+				<button class="section primary large" onClick="document.getElementById('OutputCollapseWrapper').className='tabs stacked'; document.getElementById('OutputDiv').innerHTML = parseYoutubeMessage(document.getElementById('InputTa').value);">Convert Youtube comment</button>
+				<button class="section primary large" onClick="document.getElementById('OutputCollapseWrapper').className='tabs stacked'; document.getElementById('OutputDiv').innerHTML = parseSlackMessage(document.getElementById('InputTa').value);">Convert Slack message</button>
+				<button class="section primary large" onClick="document.getElementById('OutputCollapseWrapper').className='tabs stacked'; document.getElementById('OutputDiv').innerHTML = parseTenorCardsMessage(document.getElementById('InputTa').value);">Convert Tenor.cards message</button>
+				<div class="tabs stacked hidden" id="OutputCollapseWrapper">
+					<input type="checkbox" id="OutputCollapse" aria-hidden="true" checked autocomplete="off">
+					<label for="OutputCollapse" aria-hidden="true">Show/hide results</label>
+					<div id="OutputDiv">
+					</div>
+				</div>
+			</div>
+			<br/><br/><br />
+		</div>
+	</div>
+	<footer>
+			<div class="container">
+				<div class="row">
+					<div class="col-sm col-lg-10 col-lg-offset-1">
+						<p>Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by Yash Yadav, based on <a href="https://github.com/Chalarangelo/parse-md-js/">markdown parser</a> by Angelos Chalaris, licensed under the <a href="https://github.com/OhYash/parse-md-js/blob/master/LICENSE">MIT license</a>.</p>
+					</div>
+				</div>
+			</div>
+	</footer>
+
+	<script type="text/javascript" src="../parsemsg.js"></script>
+</body>
