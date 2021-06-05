@@ -22,7 +22,6 @@ const horizontalRuleRegex = /\n((\-{3,})|(={3,}))/g;
 const unorderedListRegex = /(\n\s*(\-|\+)\s.*)+/g;
 const orderedListRegex = /(\n\s*([0-9]+\.)\s.*)+/g;
 const newlineRegex = /([ \n]{2,})/g;
-const paragraphRegex = /\n+(?!<pre>)(?!<h)(?!<ul>)(?!<blockquote)(?!<hr)(?!\t)([^\n]+)\n/g;
 
 // Main replacer functions
 const inlineCodeReplacer = function(fullMatch, tagStart, tagContents){
@@ -64,9 +63,6 @@ const orderedListReplacer = function(fullMatch){
 	fullMatch.trim().split('\n').forEach( item => { items += '<li>' + item.substring(item.indexOf('.')+2) + '</li>'; } );
 	return '\n<ol>' + items + '</ol>';
 }
-const paragraphReplacer = function(fullMatch, tagContents){
-	return '<p>' + tagContents + '</p>';
-}
 
 // Rules for Markdown parsing (use in order of appearance for best results)
 const replaceInlineCodes = replaceRegex(inlineCodeRegex, inlineCodeReplacer);
@@ -83,7 +79,6 @@ const replaceHorizontalRules = replaceRegex(horizontalRuleRegex, horizontalRuleR
 const replaceNewline = replaceRegex(newlineRegex, newlineReplacer);
 const replaceUnorderedLists = replaceRegex(unorderedListRegex, unorderedListReplacer);
 const replaceOrderedLists = replaceRegex(orderedListRegex, orderedListReplacer);
-const replaceParagraphs = replaceRegex(paragraphRegex, paragraphReplacer);
 
 const replaceWhatsappMsg = function(str) {
   return replaceInlineCodes3x(
