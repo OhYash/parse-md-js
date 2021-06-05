@@ -52,7 +52,7 @@ const horizontalRuleReplacer = function(fullMatch){
 	return '\n<hr />';
 }
 const newlineReplacer = function(fullMatch){
-	return '\n';
+	return '<br />';
 }
 const unorderedListReplacer = function(fullMatch){
 	let items = '';
