@@ -28,11 +28,11 @@ The parser will parse the contents of `yourText` as HTML.
 _italics_
 ```
 
-- For Whatsapp and slack, ~Strikethrough~ is done using tilde characters:
+- For Whatsapp and slack, ~Strikethrough~ is done using tilde(`~`) characters:
 ```
 ~strikethrough~
 ```
-For Youtube and tenor.cards, same is done using hyphen:
+For Youtube and tenor.cards, same is done using hyphen(`-`):
 ```
 -strikethrough-
 ```
@@ -49,13 +49,13 @@ For Youtube and tenor.cards, same is done using hyphen:
 ### Heading 3
 ```
 
-- **Links** are only available using the `[title](link_url)` syntax and **images** are only available using the `![title](image_url)` syntax:
+- **Hyperlinks** are created using the `[title](link_url)` syntax and **images** can be added using the `![title](image_url)` syntax:
 ```
 [link_title](https://github.com/OhYash/parsemsg-js)
-![image_tite](https://github.com/OhYash/parsemsg-js/image.png)
+![image_tite](https://tenor.cards/assets/images/logo256.png)
 ```
 
-- **Line breaks** are supported using two or more space or newline characters.
+- **Line breaks** are created using two or more `space` or `newline` characters.
 
 ## License
 
