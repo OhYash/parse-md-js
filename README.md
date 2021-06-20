@@ -42,13 +42,6 @@ For Youtube and tenor.cards, same is done using hyphen(`-`):
 
 ### Tenor.cards exclusive
 
-- **Headers** are available using the `#` syntax:
-```
-# Heading 1
-## Heading 2
-### Heading 3
-```
-
 - **Hyperlinks** are created using the `[title](link_url)` syntax and **images** can be added using the `![title](image_url)` syntax:
 ```
 [link_title](https://github.com/OhYash/parsemsg-js)
