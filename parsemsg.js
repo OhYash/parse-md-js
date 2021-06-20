@@ -17,48 +17,40 @@ const strikethroughTildeRegex = /(~)(.*?)\1/g;
 // Extras:
 const imageRegex = /!\[([^\[]+)\]\(([^\)]+)\)/g;
 const linkRegex = /\[([^\[]+)\]\(([^\)]+)\)/g;
-const headingRegex = /\n(#+\s*)(.*)/g;
-const horizontalRuleRegex = /\n((\-{3,})|(={3,}))/g;
+const newlineRegex = /([ \n]{2,})/g;
 const unorderedListRegex = /(\n\s*(\-|\+)\s.*)+/g;
 const orderedListRegex = /(\n\s*([0-9]+\.)\s.*)+/g;
-const newlineRegex = /([ \n]{2,})/g;
 
 // Main replacer functions
-const inlineCodeReplacer = function(fullMatch, tagStart, tagContents){
+const inlineCodeReplacer = function(fullMatch, tagStart, tagContents) {
 	return '<code>' + tagContents + '</code>';
 }
-const boldReplacer = function(fullMatch, tagStart, tagContents){
+const boldReplacer = function(fullMatch, tagStart, tagContents) {
 	return '<strong>'+ tagContents + '</strong>';
 }
-const italicsReplacer = function(fullMatch, tagStart, tagContents){
+const italicsReplacer = function(fullMatch, tagStart, tagContents) {
 	return '<em>'+ tagContents + '</em>';
 }
-const strikethroughReplacer = function(fullMatch, tagStart, tagContents){
+const strikethroughReplacer = function(fullMatch, tagStart, tagContents) {
 	return '<del>' + tagContents + '</del>';
 }
 
 // Extras
-const imageReplacer = function(fullMatch, tagTitle, tagURL){
+const imageReplacer = function(fullMatch, tagTitle, tagURL) {
 	return '<img src="' + tagURL + '" alt="' + tagTitle + '" />';
 }
-const linkReplacer = function(fullMatch, tagTitle, tagURL){
+const linkReplacer = function(fullMatch, tagTitle, tagURL) {
 	return '<a href="' + tagURL + '">' + tagTitle + '</a>';
 }
-const headingReplacer = function(fullMatch, tagStart, tagContents){
-	return '\n<h' + tagStart.trim().length + '>' + tagContents + '</h' + tagStart.trim().length + '>';
-}
-const horizontalRuleReplacer = function(fullMatch){
-	return '\n<hr />';
-}
-const newlineReplacer = function(fullMatch){
+const newlineReplacer = function(fullMatch) {
 	return '<br />';
 }
-const unorderedListReplacer = function(fullMatch){
+const unorderedListReplacer = function(fullMatch) {
 	let items = '';
 	fullMatch.trim().split('\n').forEach( item => { items += '<li>' + item.substring(2) + '</li>'; } );
 	return '\n<ul>' + items + '</ul>';
 }
-const orderedListReplacer = function(fullMatch){
+const orderedListReplacer = function(fullMatch) {
 	let items = '';
 	fullMatch.trim().split('\n').forEach( item => { items += '<li>' + item.substring(item.indexOf('.')+2) + '</li>'; } );
 	return '\n<ol>' + items + '</ol>';
@@ -74,8 +66,6 @@ const replaceceStrikethroughTilde = replaceRegex(strikethroughTildeRegex, strike
 
 const replaceImages = replaceRegex(imageRegex, imageReplacer);
 const replaceLinks = replaceRegex(linkRegex, linkReplacer);
-const replaceHeadings = replaceRegex(headingRegex, headingReplacer);
-const replaceHorizontalRules = replaceRegex(horizontalRuleRegex, horizontalRuleReplacer);
 const replaceNewline = replaceRegex(newlineRegex, newlineReplacer);
 const replaceUnorderedLists = replaceRegex(unorderedListRegex, unorderedListReplacer);
 const replaceOrderedLists = replaceRegex(orderedListRegex, orderedListReplacer);
@@ -118,13 +108,12 @@ const parseSlackMessage = function(str) {
 
 const replaceTenorCardsMsg = function(str) {
   return replaceNewline(
-	  			replaceHeadings(
-					  replaceInlineCodes(
-						  replaceceStrikethrough(
-		  					replaceItalics(
-		  						replaceBold(
+					  replaceceStrikethrough(
+	  					replaceItalics(
+	  						replaceBold(
+				  				replaceInlineCodes(
 		  							replaceLinks(
-	  									replaceImages(str))))))));
+	  									replaceImages(str)))))));
 }
 // Parser for Tenor.cards message
 // Usage: parseTenorCardsMessage(strVar)

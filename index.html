@@ -11,6 +11,7 @@
 	<meta property="og:title" content="parsemsg.js"/>
 	<meta property="og:type" content="website"/>
 	<meta property="og:description" content="A regular expression Markdown parser, written in functional Javascript."/>
+	<script type="text/javascript" src="./parsemsg.js"></script>
 </head>
 
 <body>
@@ -32,9 +33,7 @@
 				<div class="section double-padded"><h2>Convert some Text!</h2></div>
 				<div class="section double-padded"><p>Actions speak louder than words, right? Well, let's see it at work then! Enter some valid message text in the input field below, then press the buttons below it to convert it to HTML instantly!</p></div>
 				
-				<textarea id="InputTa" style="height: 150px;" class="section media double-padded" autocomplete="off"># Sample heading
-
-This is a sample paragraph with some `inline code`  
+				<textarea id="InputTa" style="height: 150px;" class="section media double-padded" autocomplete="off">This is a sample paragraph with some `inline code`  
 Maybe you would like to see some *bold text* or some _italics_, huh?  
 Also, depending on app, ~this~ could be strikethrough, or maybe -this- is.</textarea>
 				<button class="section primary large" onClick="document.getElementById('OutputCollapseWrapper').className='tabs stacked'; document.getElementById('OutputDiv').innerHTML = parseWhatsappMessage(document.getElementById('InputTa').value);">Convert Whatsapp message</button>
@@ -59,6 +58,4 @@ Also, depending on app, ~this~ could be strikethrough, or maybe -this- is.</text
 				</div>
 			</div>
 	</footer>
-
-	<script type="text/javascript" src="../parsemsg.js"></script>
 </body>
